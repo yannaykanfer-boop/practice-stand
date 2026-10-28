@@ -635,8 +635,8 @@ function toggleRecordingPlayback(){
 }
 
 /* ---------- Controls ---------- */
-const HELP={listen:'The computer plays the song so you can hear how it goes. Watch the notes light up.',
-  beat:'Play along with the count. Every note is scored as it goes by: green right, red wrong, grey missed.',
+const HELP={listen:'The computer plays the song so you can hear how it goes. Turn your volume up and watch the notes light up.',
+  beat:'You play, the computer listens and keeps the beat with clicks. Every note is scored as it goes by: green right, red wrong, grey missed. Want to hear the melody too? Turn on Guide melody and wear headphones.',
   wait:'The song waits on each note until you play it. Take your time. Yellow = you got it on the 2nd try.',
   check:'Record yourself on your phone (voice memo is fine), then upload it. You get a score and see which notes to fix.'};
 function modeLine(){return {listen:'Listen mode doesn’t score. Switch to Play along or Wait for me to get a score.',beat:'Press Start, wait for the 4 clicks, then play.',wait:'Press Start and play the first note when you’re ready.',check:'Upload a recording to get a score.'}[st.mode]}
@@ -666,10 +666,10 @@ $('to').onchange=()=>setPart(+$('from').value,+$('to').value);
 $('whole').onclick=()=>setPart(1,SONGS[st.song].measures.length);
 $('tricky').onclick=()=>{const t=SONGS[st.song].tricky;setPart(t[0],t[1])};
 function tog(id,key){$(id).onclick=()=>{st[key]=!st[key];$(id).setAttribute('aria-pressed',st[key]);store(key,st[key]);if(key==='loop'&&!st[key])clearTimeout(loopTimer)}}
-tog('loop','loop');tog('metro','metro');tog('guide','guide');
+tog('loop','loop');tog('metro','metro');$('metro').addEventListener('click',()=>store('metro2',st.metro));tog('guide','guide');
 
 /* ---------- Boot ---------- */
-st.speed=load('speed',.7);st.loop=load('loop',true);st.metro=load('metro',false);st.guide=false;
+st.speed=load('speed',.7);st.loop=load('loop',true);st.metro=load('metro2',true);st.guide=false;
 $('speed').value=st.speed;$('loop').setAttribute('aria-pressed',st.loop);$('metro').setAttribute('aria-pressed',st.metro);
 setSong(load('song','lc')in SONGS?load('song','lc'):'lc');
 $('speed').oninput({target:$('speed')});
