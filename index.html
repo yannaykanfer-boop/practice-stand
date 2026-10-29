@@ -404,7 +404,7 @@ async function startMic(){
     $('micWarn').hidden=true;$('hear').hidden=false;return true;
   }catch(e){
     $('micWarn').hidden=false;
-    $('micWarn').textContent='The mic is blocked on this page, so live scoring can’t hear you here. Use “Check a recording” instead: record yourself on your phone and upload it. (Live scoring works when you open the page from yannaykanfer-boop.github.io/practice-stand.)';
+    $('micWarn').textContent='The mic is blocked on this page, so live scoring can’t hear you here. Use “Check a recording” instead: record yourself on your phone and upload it.';
     $('hear').textContent='mic blocked';return false;
   }
 }
